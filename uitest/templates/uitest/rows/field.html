@@ -1,0 +1,26 @@
+{% comment %} {{widget}} {% endcomment %}
+<input
+  form="{{widget.form.prefix}}"
+  hx-include="[id='{{widget.form.prefix}}']"
+  hx-post="/rack/update/{{widget.form.form_index}}"
+  hx-swap="outerHTML"
+  hx-target="#{{widget.form.prefix}}-row"
+  id="{{widget.field.name}}-{{widget.form.form_index}}"
+  name="{{widget.name}}"
+  type="text"
+  value="{{widget.value|default_if_none:""}}"
+  {% comment %} data-unsaved="false" {% endcomment %}
+  {% if widget.required %}required{% endif %}
+/>
+{% if widget.field.errors %}
+<div>{{widget.field.errors}}</div>
+{% endif %}
+<script>
+  {# TODO: THIS IS TERRIBLE, IT WILL END UP CREATING EXCESS EVENTS! #}
+  htmx.onLoad(function(){
+    var input = document.getElementsByName("{{widget.name}}")[0];
+    if (input) {
+      input.addEventListener("input", function() { input.dataset.unsaved = true; });
+    }
+});
+</script>

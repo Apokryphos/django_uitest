@@ -1,0 +1,25 @@
+{%load static %}
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="{% static 'style.css' %}"/>
+    <script src="{% static 'htmx.js' %}"></script>
+  </head>
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  <button hx-post="/rack/add" hx-swap="beforeend" hx-target="#rack-rows">Add Rack</button>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody id="rack-rows">
+      {% for form in forms %}
+        {%include "uitest/rows/rack.html" %}
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

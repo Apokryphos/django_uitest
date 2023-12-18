@@ -1,0 +1,18 @@
+<tr
+  id="{{form.prefix}}-row"
+  {% comment %} {% if form.instance.id %}
+    hx-get="/rack/get/{{form.instance.id}}"
+    hx-trigger="load once"
+  {% endif %} {% endcomment %}
+  {% if not form.instance.id %}data-new{% endif %}
+>
+    <td>
+      {{form.instance.id|default:"NEW"}}
+      <form id="{{form.prefix}}"></form>
+      {% if widget.form.errors %}
+        <div>{{widget.form.errors}}</div>
+      {% endif %}
+    </td>
+    <td>{{form.name}}</td>
+    <td>{{form.location}}</td>
+</tr>

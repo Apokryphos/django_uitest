@@ -1,0 +1,26 @@
+.htmx-request {
+    background-color: gold;
+}
+
+input:invalid {
+    background-color: red;
+}
+
+table {
+    border: 1px solid black;
+    margin: 1em;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 0.5em 1em;
+}
+
+tr[data-new] {
+    background-color: gold;
+}
+
+input[data-unsaved] {
+    background-color: gold;
+}
+
